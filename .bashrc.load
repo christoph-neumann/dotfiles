@@ -6,3 +6,22 @@ export PATH=$PATH:$HOME/bin:$HOME/bin/local
 
 ####
 # put any bash customizations in here
+
+# Give SBT enough memory to work
+export SBT_OPTS="-Dsbt.boot.directory=${HOME}/.sbt/boot/ -Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=512M"
+
+# Number of commands to save in the history file
+export HISTFILESIZE=10000
+
+# Number of commands to save from the current session.
+export HISTSIZE="$HISTFILESIZE"
+
+# Which commands to ingore from the current session. This will ignore commands
+# that have been previously used, commands that start with a space, and the
+# "exit" command.
+export HISTIGNORE="&:[ ]*:exit"
+
+# Tells bash to append the commands from the current session to the history file
+# instead of replacing the file with the commands form the current session.
+shopt -s histappend
+
