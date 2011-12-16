@@ -1,0 +1,21 @@
+#!/bin/bash
+
+branch="$1"
+if [ "$1" == "" ]; then
+	echo >&2 "usage: git missing  branchname"
+	exit 1
+fi
+
+git_log="git log --oneline --color=always"
+
+out=$($git_log HEAD --not "$branch")
+if [ "$out" != "" ]; then
+	echo "+++ Revisions on this branch that are not in $branch:"
+	echo "$out"
+fi
+
+out=$($git_log "$branch" --not HEAD)
+if [ "$out" != "" ]; then
+	echo "--- Revisions in $branch that are not in this branch:"
+	echo "$out"
+fi
