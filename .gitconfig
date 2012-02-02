@@ -23,6 +23,8 @@
 	showdiff = "!sh -c 'git difftool --tool=vimdiff -y $1^ $1' -"
 	lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 	stash-unapply = !git stash show -p | git apply -R
+	wip = commit -a -m "WIP"
+	wip-pop = reset --mixed HEAD^
 [merge]
 	tool = vimdiff
 [diff]
