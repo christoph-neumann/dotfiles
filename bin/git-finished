@@ -1,0 +1,15 @@
+#!/bin/bash
+
+branch="$1"
+if [ "$1" == "" ]; then
+	echo >&2 "usage: git finish branchname"
+	exit 1
+fi
+
+git branch | grep "^..$branch$" 2>&1 >/dev/null
+if [ "$?" != "0" ]; then
+	echo >&2 "Error: branch does not exist: $branch"
+	exit 1
+fi
+
+git co master && git pull && git merge --no-ff "$branch"
