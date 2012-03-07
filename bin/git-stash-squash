@@ -1,0 +1,25 @@
+#!/bin/bash
+
+arg="$1"
+rv=0
+
+if [ "$arg" != "--continue" ]; then
+	changed=$(git status --porcelain | grep -v "??" | wc -c | perl -pe 's/\s*(\S+)\s*/$1/g')
+	if [ "$changed" != "0" ]; then
+		echo >&2 "Error: there are uncommitted changes to the working tree"
+		exit 1
+	fi
+
+	git stash apply \
+	&& git commit -a -m "squashing" \
+	&& git stash apply stash@{1}
+	rv="$?"
+fi
+
+if [ "$rv" == "0" ]; then
+	git commit --amend -a -m "squashing" \
+	&& git reset --mixed HEAD^ \
+	&& git stash \
+	&& git stash drop stash@{2} \
+	&& git stash drop stash@{1}
+fi
