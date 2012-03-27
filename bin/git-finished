@@ -2,8 +2,20 @@
 
 branch="$1"
 if [ "$1" == "" ]; then
-	echo >&2 "usage: git finish branchname"
-	exit 1
+	ref=$(git symbolic-ref HEAD 2> /dev/null)
+	if [ "$?" != "0" ]; then
+		echo >&2 "Error: does not appear to be a git repository"
+		exit 1
+	fi
+	ref=${ref#refs/heads/}
+
+	echo -n "Would you like to merge '$ref' into master? (y/n) "
+	read finish
+	if [ "$finish" = "y" ]; then
+		branch="$ref"
+	else
+		exit 1
+	fi
 fi
 
 git branch | grep "^..$branch$" 2>&1 >/dev/null
