@@ -25,6 +25,9 @@ export HISTIGNORE="&:[ ]*:exit"
 # instead of replacing the file with the commands form the current session.
 shopt -s histappend
 
+# Don't blindly execute history expansions, but edit instead
+shopt -s histverify
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
