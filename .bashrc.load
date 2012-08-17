@@ -40,6 +40,9 @@ fi
 
 # --- Interactive Shell Only --- #
 
+# Use VI mode. To go back to the default mode: "set -o emacs".
+set -o vi
+
 # Add git information to the prompt
 function parse_git_branch {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
