@@ -74,7 +74,7 @@ __cmd_failed () {
 
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
-    PS1="$YELLOW\$(__jobs)$CYAN\u@\h$YELLOW\$(__parse_git_branch)$WHITE:$GREEN\W$WHITE\$(__cmd_failed)\$$RESET "
+    PS1="\[$YELLOW\]\$(__jobs)\[$CYAN\]\u@\h\[$YELLOW\]\$(__parse_git_branch)\[$WHITE\]:\[$GREEN\]\W\n\[$WHITE\]\[\$(__cmd_failed)\]\$\[$RESET\] "
 else
     PS1='$(__jobs)\u@\h$(__parse_git_branch):\W\$ '
 fi
