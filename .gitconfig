@@ -16,20 +16,25 @@
 	co = checkout
 	ba = branch -a
 	w = whatchanged
+	mf = merge --ff-only
+	mnf = merge --no-ff
 	vimdiff = difftool --tool=vimdiff -y
 	unstage = reset HEAD
+	lo = log --oneline
 	lol = log --oneline --graph --decorate
 	hist = log --all --graph --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
 	showdiff = "!sh -c 'git difftool --tool=vimdiff -y $1^ $1' -"
+	ssp = stash show -p
 	lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 	stash-unapply = !git stash show -p | git apply -R
 	wip = commit -a -m "WIP"
 	wip-pop = reset --mixed HEAD^
 [merge]
-	tool = vimdiff
+#	tool = vimdiff
+	tool = meld
 [diff]
 	tool = opendiff
 [difftool]
 	prompt = false
 [push]
-	default = matching
+	default = simple

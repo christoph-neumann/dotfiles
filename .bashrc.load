@@ -81,3 +81,12 @@ fi
 unset color_prompt
 
 PROMPT_COMMAND='LAST_EXIT="$?"'
+
+alias issh="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+
+export LEIN_FAST_TRAMPOLINE=y
+alias cljsbuild="lein trampoline cljsbuild $@"
+
+alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+
+alias weather="curl wttr.in/portland"

@@ -8,6 +8,7 @@ fi
 
 git_log="git log --oneline --color=always"
 
+git fetch
 out=$($git_log HEAD --not "$branch")
 if [ "$out" != "" ]; then
 	echo "+++ Revisions on this branch that are not in $branch:"
